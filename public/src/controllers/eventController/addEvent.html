@@ -1,0 +1,49 @@
+<div ng-controller="addEventController" class="content-wrapper">
+    <div class="title" data-target="#add-event-info" data-toggle="collapse">
+        <h3>Create new event</h3>
+    </div>
+    <form ng-submit="createEvent()" id="add-event-info" class="collapse in">
+        <div ng-show="errorAddEvent" class="alert alert-danger">{{ errorAddEvent }}</div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            <input type="text" class="form-control" placeholder="Eventname" ng-model="newEvent.eventname">
+        </div>
+        <div>
+            <span>From: </span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            <input type="date" class="form-control" ng-model="newEvent.from">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+            <input type="time" class="form-control" ng-model="newEvent.from">
+        </div>
+        <div>
+            <span>Until: </span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            <input type="date" class="form-control" ng-model="newEvent.until">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+            <input type="time" class="form-control" ng-model="newEvent.until">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+            <input type="text" class="form-control" placeholder="Street & Number" ng-model="newEvent.address1">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+            <input type="text" class="form-control" placeholder="Zip & City" ng-model="newEvent.address2">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-file"></span></span>
+            <input type="file" class="form-control" ng-model="newEvent.eventimage">
+        </div>
+        <button type="submit" class="btn btn-default btn-raised pull-right">Save <span
+                class="glyphicon glyphicon-ok"></span>
+        </button>
+    </form>
+</div>

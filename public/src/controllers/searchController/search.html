@@ -1,0 +1,44 @@
+<div ng-controller="searchController" class="content-wrapper">
+    <div class="title">
+        <h2>Let's find it</h2>
+    </div>
+    <form class="input-group" id="search" ng-submit="searchOnSubmit(htmlValue)">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+        <input type="search" class="form-control" placeholder="Search for persons, events or locations"
+               ng-model="searchModel" ng-init="searchModel=''" ng-keypress="searchOnKeyPress()">
+    </form>
+
+    <div class="title" data-target="#user-search-result" data-toggle="collapse" ng-hide="!searchResultsUsers.length">
+        <h3>Users</h3>
+    </div>
+    <div id="user-search-result" class="collapse in">
+        <ul class="list">
+            <li ng-repeat="sr in searchResultsUsers | filter:filterSearchResults">
+                <a ng-href="/#/{{sr.resultSort}}/{{sr.id}}">
+                    <img src="http://student.howest.be/jonatan.michiels/geofeelings/assets/user.png" alt="Description"/>
+                    <div>
+                        <span>{{sr.title}}</span>
+                        <p><span>{{sr.subtitle}}</span></p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="title" data-target="#event-search-result" data-toggle="collapse" ng-hide="!searchResultsEvents.length">
+        <h3>Events</h3>
+    </div>
+    <div id="event-search-result" class="collapse in">
+        <ul class="list">
+            <li ng-repeat="sr in searchResultsEvents | filter:filterSearchResults">
+                <a ng-href="/#/{{sr.resultSort}}/{{sr.id}}">
+                    <img src="http://student.howest.be/jonatan.michiels/geofeelings/assets/event.png" alt="Description"/>
+                    <div>
+                        <span>{{sr.title}}</span>
+                        <p><span>{{sr.subtitle}}</span></p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div ng-controller="intro_sharedController" class="content-wrapper">
+    <div class="title">
+        <h2>We got your share!</h2>
+    </div>
+    <p>Place: {{infoPostedShare.address}}</p>
+    <p>Mood: {{infoPostedShare.mood}}</p>
+    <p>Time: {{infoPostedShare.time | date:"dd/MM/yy HH:mm"}}</p>
+    <p>Reason: {{infoPostedShare.reason}}</p>
+
+    <a href="#/me">
+        <button class="btn btn-default btn-raised pull-left">Profile <span
+                class="glyphicon glyphicon-arrow-right"></span>
+        </button>
+    </a>
+</div>

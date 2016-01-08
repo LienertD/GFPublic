@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="geofeelings" ng-controller="mainController" data-ng-init="init()">
+<head>
+    <meta charset="UTF-8">
+    <title>Geofeelings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
+    <link href="dist/css/site.css" rel="stylesheet"/>
+    <script src="/chat/socket.io.js"></script>
+</head>
+<body>
+<main>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a ng-click="ResetRealtimeMap()" class="navbar-brand" href="/">
+                    <img src="assets/logo.png" alt="logo">
+                </a>
+            </div>
+            <div id="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#/search">
+                            <button class="btn btn-default btn-raised pull-right">Search <span
+                                    class="glyphicon glyphicon-search"></span></button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/help">
+                            <button class="btn btn-default btn-raised pull-right">Help <span
+                                    class="glyphicon glyphicon-question-sign"></span></button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/me">
+                            <button class="btn btn-default btn-raised pull-right">User <span
+                                    class="glyphicon glyphicon glyphicon-user"></span></button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <article class="container-fluid row">
+        <section class="col-md-9 map">
+            <div id="map"></div>
+            <div id="controls-map" class="slider-wrapper">
+                <label for="filter"><span class="glyphicon glyphicon-time"></span> Time interval: <span>{{ timestamp }}</span></label>
+                <input type="range" id="filter" name="filter" ng-model="timelapse">
+            </div>
+        </section>
+        <aside class="col-md-3">
+            <div ng-view></div>
+            <footer>
+                &copy; Lienert Deprez & Jonatan Michiels
+            </footer>
+        </aside>
+    </article>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script src="dist/js/app.min.js"></script>
+</body>
+</html>

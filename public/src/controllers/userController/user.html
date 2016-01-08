@@ -1,0 +1,71 @@
+<div ng-controller="userController" class="content-wrapper" data-ng-init="init()">
+    <div class="title" data-target="#user-info" data-toggle="collapse">
+        <h3>User info</h3>
+    </div>
+    <div id="user-info" class="collapse in">
+        <img src="http://student.howest.be/lienert.deprez/files/vriendje.png" alt="profile">
+
+        <div class="data-object">
+            <div>
+                <span class="glyphicon glyphicon-user"></span>
+                <span>{{userfoundwithid.username}}</span>
+            </div>
+            <div ng-show="userfoundwithid.age">
+                <span class="glyphicon glyphicon-calendar"></span>
+                <span>{{userfoundwithid.age | date:"dd/MM/yyyy"}}</span>
+            </div>
+            <div ng-show="userfoundwithid.lat || userfoundwithid.lng">
+                <span class="glyphicon glyphicon-home"></span>
+                <span>N{{userfoundwithid.lat}} E{{userfoundwithid.lng}}</span>
+
+                <p><span></span></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="title" data-target="#user-events" data-toggle="collapse">
+        <h3>Recent locations</h3>
+    </div>
+    <div id="user-events" class="collapse">
+        <ul class="list">
+            <span ng-hide="shareFoundWithUserId.length>0" class="glyphicon glyphicon-refresh spinmerightround"></span>
+            <li ng-repeat="share in shareFoundWithUserId">
+                <img ng-src="{{ getShareImage(share) }}" alt="event" width="100" height="100">
+                <div>
+                    <span>{{ getShareInfo(share) }}</span>
+                    <p>
+                        <span><span class="glyphicon glyphicon-time"></span>{{ share.time | date : "MM/dd/yyyy 'at' h:mma" }}</span>
+                        <span><span class="glyphicon glyphicon-heart"></span>{{ share.mood }}%</span>
+                    </p>
+                </div>
+                <button ng-click="showShareOnMap(share)" class="btn btn-default btn-raised pull-right"><span
+                        class="glyphicon glyphicon-search"></span></button>
+            </li>
+        </ul>
+    </div>
+    <div class="title" data-target="#user-chat" data-toggle="collapse">
+        <h3>Chat</h3>
+    </div>
+    <div ng-hide="userfoundwithid.chat">This user doesn't want to chat.</div>
+    <div id="user-chat" class="collapse" ng-show="userfoundwithid.chat">
+        <div id="chatbox">
+            <div ng-repeat="chatMessage in chatMessages">
+                <p  ng-class="chatMessage.cssClass">{{chatMessage.sender}}: {{chatMessage.text}}</p>
+            </div>
+        </div>
+        <button class="btn btn-default btn-raised pull-right" ng-click="sendChatMsgToServer()">Send <span
+                class="glyphicon glyphicon-send"></span></button>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+            <input type="text" class="form-control" placeholder="Message" id="inputTextChat">
+        </div>
+    </div>
+    <div class="navigation">
+        <a href="#/search">
+            <button class="btn btn-default btn-raised pull-left"><span
+                    class="glyphicon glyphicon-arrow-left"></span> Searchresults
+            </button>
+        </a>
+    </div>
+</div>

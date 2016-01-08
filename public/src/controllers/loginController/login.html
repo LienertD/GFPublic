@@ -1,0 +1,22 @@
+<div ng-controller="loginController" class="content-wrapper">
+    <div class="title">
+        <h2>Enter the happiness</h2>
+    </div>
+    <div ng-show="extraLoginInfo" class="alert alert-danger">{{extraLoginInfo}}</div>
+    <div ng-show="error" class="alert alert-danger">{{ error }}</div>
+    <form ng-submit="login()">
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            <input type="text" class="form-control" placeholder="Username" ng-model="username">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-console"></span></span>
+            <input type="password" class="form-control" placeholder="Password" ng-model="password">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-default btn-raised pull-right">Go <span
+                    class="glyphicon glyphicon-ok"></span></button>
+            <a href="#/register">Register ></a>
+        </div>
+    </form>
+</div>

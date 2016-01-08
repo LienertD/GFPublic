@@ -1,0 +1,23 @@
+<div ng-controller="introController" class="content-wrapper">
+    <div class="title">
+        <h2>How are you feeling?</h2>
+    </div>
+    <div class="slider-wrapper">
+        <label for="filter"></label>
+        <input type="range" id="filter" name="filter" ng-model="sliderValue">
+        <div id="sliderPercent">Why are you feeling {{moodWord}}?</div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
+            <!--<input type="text" class="form-control" placeholder="Why are you feeling {{moodWord}}?" ng-model="moodReason">-->
+            <textarea ng-model="moodReason" name="reason" id="textarea-reason" class="form-control"></textarea>
+        </div>
+        <div>
+            <canvas id="smileyCanvas" width="100" height="100"></canvas>
+        </div>
+        <button class="btn btn-default btn-raised pull-right"
+                ng-click="postShare()">Submit!
+            <span ng-show="!sharePosted" class="glyphicon glyphicon-chevron-right"></span>
+            <span ng-show="sharePosted" class="glyphicon glyphicon-refresh spinmerightround"></span>
+        </button>
+    </div>
+</div>

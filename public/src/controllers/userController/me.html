@@ -1,0 +1,85 @@
+<div ng-controller="meController" class="content-wrapper">
+    <div class="title" data-target="#me-show-info" data-toggle="collapse">
+        <h3>Show profile</h3>
+    </div>
+    <div id="me-show-info" class="collapse">
+        <img ng-src="{{ user.userimage }}" alt="profile">
+        <div class="data-object">
+            <div>
+                <span class="glyphicon glyphicon-user"></span>
+                <span>{{ user.username }}</span>
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-calendar"></span>
+                <span>{{ user.age | date : "dd/MM/yyyy" }}</span>
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-home"></span>
+                <span>{{ user.address1 }}</span>
+                <p><span>{{ user.address2 }}</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="title" data-target="#me-show-events" data-toggle="collapse">
+        <h3>My shares</h3>
+    </div>
+    <div id="me-show-events" class="collapse">
+        <div ng-bind-html="renderHtml(noSharesForUser)"></div>
+        <ul class="list">
+            <span ng-hide="sharesforprofile.length>0" class="glyphicon glyphicon-refresh spinmerightround"></span>
+            <li ng-repeat="share in sharesforprofile">
+                <img ng-src="{{ getShareImage(share) }}" alt="event" width="100" height="100">
+                <div>
+                    <span>{{ getShareInfo(share) }}</span>
+                    <p>
+                        <span><span class="glyphicon glyphicon-time"></span>{{ share.time | date : "dd/MM/yyyy 'at' h:mma" }}</span>
+                        <span><span class="glyphicon glyphicon-heart"></span>{{ share.mood }}%</span>
+                    </p>
+                </div>
+                <button ng-click="showShareOnMap(share)" class="btn btn-default btn-raised pull-right"><span
+                        class="glyphicon glyphicon-search"></span></button>
+            </li>
+        </ul>
+    </div>
+    <div class="title" data-target="#me-edit-info" data-toggle="collapse">
+        <h3>Edit profile</h3>
+    </div>
+    <form id="me-edit-info" class="collapse" enctype="multipart/form-data">
+        <div ng-show="errorMe" class="alert alert-danger">{{ errorMe }}</div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            <input type="text" class="form-control" placeholder="Username" ng-model="user.username">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            <input type="date" class="form-control" ng-model="user.age">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+            <input type="text" class="form-control" placeholder="Street & Number" ng-model="user.address1">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+            <input type="text" class="form-control" placeholder="Zip & City" ng-model="user.address2">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-file"></span></span>
+            <input type="file" class="form-control" ng-model="user.userimage">
+        </div>
+        <div class="checkbox-wrapper">
+            <p>Chat<span>{{ user.chat }}</span></p>
+            <div class="checkbox">
+                <input type="checkbox" id="chat" name="chat" ng-model="user.chat">
+                <label for="chat"></label>
+            </div>
+        </div>
+    </form>
+    <div class="navigation">
+        <button ng-click="logout()" class="btn btn-default btn-raised pull-left">Logout <span
+                class="glyphicon glyphicon-off"></span>
+        </button>
+        <button ng-click="save(user)" class="btn btn-default btn-raised pull-right">Save <span
+                class="glyphicon glyphicon-ok"></span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div ng-controller="adminController" class="content-wrapper">
+    <div class="title" data-target="#admin-remove-events" data-toggle="collapse">
+        <h3>Delete events</h3>
+    </div>
+    <div id="admin-remove-events" class="collapse">
+        <ul class="list">
+            <li ng-repeat="event in eventsAdmin">
+                <img ng-src="{{ event.eventimage }}" alt="event" width="100" height="100">
+                <div>
+                    <span>{{ event.eventname }}</span>
+                    <p><span><span class="glyphicon glyphicon-user"></span> {{ event.authorid }}</span></p>
+                </div>
+                <button ng-click="deleteEvent(event)" class="btn btn-default btn-raised pull-right"><span
+                        class="glyphicon glyphicon-trash"></span></button>
+            </li>
+        </ul>
+    </div>
+    <div class="title" data-target="#admin-remove-shares" data-toggle="collapse">
+        <h3>Delete shares</h3>
+    </div>
+    <div id="admin-remove-shares" class="collapse">
+        <ul class="list">
+            <li ng-repeat="share in sharesAdmin">
+                <img ng-src="{{ share.user.userimage }}" alt="event" width="100" height="100">
+                <div>
+                    <span>{{ share.user.username }}</span>
+                    <p>
+                        <span><span class="glyphicon glyphicon-time"></span>{{ share.time | date : "MM/dd/yyyy 'at' h:mma" }}</span>
+                        <span><span class="glyphicon glyphicon-heart"></span>{{ share.mood }}%</span>
+                    </p>
+                </div>
+                <button ng-click="deleteShare(share)" class="btn btn-default btn-raised pull-right"><span
+                        class="glyphicon glyphicon-trash"></span></button>
+            </li>
+        </ul>
+    </div>
+    <div class="navigation">
+        <a href="#/me">
+            <button class="btn btn-default btn-raised pull-right">You <span
+                    class="glyphicon glyphicon-arrow-right"></span>
+            </button>
+        </a>
+    </div>
+</div>

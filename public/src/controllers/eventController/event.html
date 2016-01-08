@@ -1,0 +1,127 @@
+<div ng-controller="eventController" class="content-wrapper">
+    <div class="title" data-target="#event-info" data-toggle="collapse" ng-hide="event.isAuthor">
+        <h3>Event info</h3>
+    </div>
+    <div id="event-info" class="collapse" ng-hide="event.isAuthor">
+        <img ng-src="{{ event.eventimage }}" alt="event-image">
+
+        <div class="data-object">
+            <div>
+                <span class="glyphicon glyphicon-glass"></span>
+                <span>{{ event.eventname }}</span>
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-time"></span>
+                <span>From: {{ event.from | date: "HH:mm" }}</span>
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-calendar"></span>
+                <span>Day: {{ event.from | date : "MM/dd/yyyy" }}</span>
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-time"></span>
+                <span>Until: {{ event.until | date: "HH:mm" }}</span>
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-calendar"></span>
+                <span>Day: {{ event.until | date : "MM/dd/yyyy" }}</span>
+            </div>
+            <div>
+                <span class="glyphicon glyphicon-map-marker"></span>
+                <span>{{ event.address1 }}</span>
+                <p><span>{{ event.address2 }}</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="title" data-target="#event-info-author" data-toggle="collapse" ng-show="event.isAuthor">
+        <h3>Event info</h3>
+    </div>
+    <form ng-submit="updateEvent()" id="event-info-author" class="collapse" ng-show="event.isAuthor">
+        <div ng-show="errorEvent" class="alert alert-danger">{{ errorEvent }}</div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            <input type="text" class="form-control" placeholder="Eventname" ng-model="event.eventname">
+        </div>
+        <div>
+            <span>From: </span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            <input type="date" class="form-control" ng-model="event.from">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+            <input type="time" class="form-control" ng-model="event.from">
+        </div>
+        <div>
+            <span>Until: </span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            <input type="date" class="form-control" ng-model="event.until">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+            <input type="time" class="form-control" ng-model="event.until">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+            <input type="text" class="form-control" placeholder="Street & Number" ng-model="event.address1">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+            <input type="text" class="form-control" placeholder="Zip & City" ng-model="event.address2">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-file"></span></span>
+            <input type="file" class="form-control" name="eventimage">
+        </div>
+        <button type="submit" class="btn btn-default btn-raised pull-right">Set <span
+                class="glyphicon glyphicon-ok"></span></button>
+    </form>
+
+    <div class="title" data-target="#event-persons" data-toggle="collapse">
+        <h3>Recent shares</h3>
+    </div>
+    <div id="event-persons" class="collapse">
+        <div ng-bind-html="renderHtml(noSharesForEvent)"></div>
+        <ul class="list">
+            <li ng-repeat="share in sharesforevent">
+                <img ng-src="{{ share.user.userimage }}" alt="user" width="100" height="100">
+                <div>
+                    <span>{{ share.user.username }}</span>
+                    <p>
+                        <span><span class="glyphicon glyphicon-time"></span>{{ share.time | date : "MM/dd/yyyy 'at' h:mma" }}</span>
+                        <span><span class="glyphicon glyphicon-heart"></span>{{ share.mood }}%</span>
+                    </p>
+                </div>
+                <button ng-click="showShareOnMap(share)" class="btn btn-default btn-raised pull-right"><span
+                        class="glyphicon glyphicon-search"></span></button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="title" data-target="#event-feeling" data-toggle="collapse" ng-hide="hasShared">
+        <h3>Share your feelings</h3>
+    </div>
+    <form ng-submit="postShare(event)" id="event-feeling" class="collapse slider-wrapper">
+        <h4>What are your feelings?</h4>
+        <label for="filter"></label>
+        <input type="range" id="filter" name="filter" ng-model="event.mood">
+        <div id="sliderPercent">Why are you feeling {{ convertMood(event.mood) }}?</div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-align-justify"></span></span>
+            <textarea name="reason" id="textarea-reason" class="form-control" ng-model="event.reason"></textarea>
+        </div>
+        <button type="submit" class="btn btn-default btn-raised pull-right">Set <span
+                class="glyphicon glyphicon-ok"></span></button>
+    </form>
+    <div class="navigation">
+        <a href="#/addEvent">
+            <button type="button" class="btn btn-default btn-raised pull-right">Add <span
+                    class="lyphicon glyphicon-plus"></span>
+            </button>
+        </a>
+    </div>
+</div>
