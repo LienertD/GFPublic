@@ -44,7 +44,7 @@
         };
 
         $scope.login = function () {
-            $http.post(window.location.protocol + "//" + location.hostname+':3000/auth/login', {
+            $http.post(window.location.protocol + "//" + location.hostname+':8080/auth/login', {
                 username: $scope.username,
                 password: $scope.password
             }).success(function (data) {
@@ -73,7 +73,7 @@
         };
 
         $scope.register = function () {
-            $http.post(window.location.protocol + "//" + location.hostname+':3000/auth/register', {
+            $http.post(window.location.protocol + "//" + location.hostname+':8080/auth/register', {
                 username: $scope.username,
                 password: $scope.password,
                 email: $scope.email
